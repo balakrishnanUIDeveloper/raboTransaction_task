@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CartService } from './services/cart.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { CartTotalComponent } from './total/cart-total.component/cart-total.component';
+import { CartTotalComponent } from './total/cart-total.component';
 
 @Component({
   selector: 'app-cart',
@@ -11,12 +11,6 @@ import { CartTotalComponent } from './total/cart-total.component/cart-total.comp
   styleUrl: './cart.component.scss',
 })
 export class CartComponent {
-  decreaseQuantity(arg0: number) {
-    throw new Error('Method not implemented.');
-  }
-  increaseQuantity(arg0: number) {
-    throw new Error('Method not implemented.');
-  }
   private readonly cartService = inject(CartService);
   private readonly router = inject(Router);
 
@@ -34,5 +28,17 @@ export class CartComponent {
 
   getCart() {
     return this.cartService.cart();
+  }
+
+  decreaseQuantity(txId: number) {
+    this.cartService.decreaseItemCount(txId);
+  }
+
+  increaseQuantity(txId: number) {
+    this.cartService.increaseItemCount(txId);
+  }
+
+  clearCart() {
+    this.cartService.clearCart();
   }
 }

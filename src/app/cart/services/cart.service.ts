@@ -43,4 +43,47 @@ export class CartService {
   clearCart(): void {
     this.cartData.set([]);
   }
+
+  increaseItemCount(txID: number): void {
+    this.cartData.update((cart) =>
+      cart.map((item) => {
+        if (item.id !== txID) return item;
+
+        const unitPrice = item.amountPaid / (item.count || 1);
+        const newCount = (item.count || 1) + 1;
+        const newAmountPaid = parseFloat((unitPrice * newCount).toFixed(2));
+
+        return {
+          ...item,
+          count: newCount,
+          amountPaid: newAmountPaid,
+        };
+      }),
+    );
+  }
+
+  decreaseItemCount(txID: number): void {
+    this.cartData.update((cart) =>
+      cart.flatMap((item) => {
+        if (item.id !== txID) return [item];
+
+        const currentCount = item.count || 1;
+
+        // Remove item if count goes to 0
+        if (currentCount <= 1) return [];
+
+        const unitPrice = item.amountPaid / currentCount;
+        const newCount = currentCount - 1;
+        const newAmountPaid = parseFloat((unitPrice * newCount).toFixed(2));
+
+        return [
+          {
+            ...item,
+            count: newCount,
+            amountPaid: newAmountPaid,
+          },
+        ];
+      }),
+    );
+  }
 }

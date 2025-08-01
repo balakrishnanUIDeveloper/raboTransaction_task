@@ -4,7 +4,7 @@ import { TransactionService } from '../core/services/transaction.service';
 import { CartService } from '../cart/services/cart.service';
 import { TransactionInfo } from '../shared/models/transaction.model';
 import { Router } from '@angular/router';
-import { CartTotalComponent } from '../cart/total/cart-total.component/cart-total.component';
+import { CartTotalComponent } from '../cart/total/cart-total.component';
 
 @Component({
   selector: 'app-home',

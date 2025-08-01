@@ -8,7 +8,7 @@
       <button class="btn btn-secondary" (click)="goHome()">Back to Home</button>
     </div>
     <div class="col-md-12" *ngIf="cartCount() > 0">
-      <table class="table table-responsive table-hover">
+      <table class="table table-responsive">
         <thead class="table-light">
           <tr>
             <th>Name</th>
@@ -53,6 +53,9 @@
 
       <div class="d-flex justify-content-between">
         <app-cart-total></app-cart-total>
+        <button class="btn btn-primary" (click)="clearCart()">
+          Clear Cart
+        </button>
         <button class="btn btn-primary" (click)="goHome()">Back to Home</button>
       </div>
     </div>
