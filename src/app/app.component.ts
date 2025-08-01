@@ -4,10 +4,10 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [HomeComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class App {
-  protected readonly title = signal('transaction-cart-app');
+  protected readonly title = 'Transaction Cart App';
 }
