@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { App } from './app';
+import { App } from './app.component';
 
-describe('App', () => {
+describe('App component', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
@@ -18,6 +18,8 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, transaction-cart-app');
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Hello, transaction-cart-app',
+    );
   });
 });
