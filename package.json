@@ -12,12 +12,14 @@
         "format": "prettier --write \"src/**/*.{ts,html}\""
     },
     "prettier": {
-        "overrides": [{
-            "files": "*.html",
-            "options": {
-                "parser": "angular"
+        "overrides": [
+            {
+                "files": "*.html",
+                "options": {
+                    "parser": "angular"
+                }
             }
-        }]
+        ]
     },
     "private": true,
     "dependencies": {
@@ -42,8 +44,8 @@
         "@angular/cli": "^20.1.4",
         "@angular/compiler-cli": "^20.1.0",
         "@types/jasmine": "~5.1.0",
-        "@typescript-eslint/eslint-plugin": "7.11.0",
-        "@typescript-eslint/parser": "7.11.0",
+        "@typescript-eslint/eslint-plugin": "^8.38.0",
+        "@typescript-eslint/parser": "^8.38.0",
         "angular-eslint": "^20.1.1",
         "eslint": "8.57.1",
         "eslint-config-prettier": "^10.1.8",
