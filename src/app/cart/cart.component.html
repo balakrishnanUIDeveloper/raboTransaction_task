@@ -7,55 +7,59 @@
       <p>No transactions in cart.</p>
       <button class="btn btn-secondary" (click)="goHome()">Back to Home</button>
     </div>
-    <div class="col-md-12" *ngIf="cartCount() > 0">
-      <table class="table table-responsive">
-        <thead class="table-light">
-          <tr>
-            <th>Name</th>
-            <th>Account</th>
-            <th>Amount (€)</th>
-            <th class="col-1">Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tx of getCart()">
-            <td>{{ tx.contractorName }}</td>
-            <td>{{ tx.accountNumber }}</td>
-            <td>{{ tx.amountPaid }}</td>
-            <td>
-              <div class="input-group btn-group-sm">
-                <button
-                  class="btn btn-danger"
-                  type="button"
-                  (click)="decreaseQuantity(tx.id)"
-                >
-                  −
-                </button>
-                <input
-                  type="text"
-                  class="form-control text-center"
-                  [value]="tx.count"
-                  readonly
-                  aria-label="Quantity"
-                />
-                <button
-                  class="btn btn-success"
-                  type="button"
-                  (click)="increaseQuantity(tx.id)"
-                >
-                  +
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="d-flex justify-content-between">
+    <div class="row" *ngIf="cartCount() > 0">
+      <div class="col-md-12">
+        <table class="table table-responsive">
+          <thead class="table-light">
+            <tr>
+              <th>Name</th>
+              <th>Account</th>
+              <th>Amount (€)</th>
+              <th class="col-1">Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tx of getCart()">
+              <td>{{ tx.contractorName }}</td>
+              <td>{{ tx.accountNumber }}</td>
+              <td>{{ tx.amountPaid }}</td>
+              <td>
+                <div class="input-group btn-group-sm">
+                  <button
+                    class="btn btn-danger"
+                    type="button"
+                    (click)="decreaseQuantity(tx.id)"
+                  >
+                    −
+                  </button>
+                  <input
+                    type="text"
+                    class="form-control text-center"
+                    [value]="tx.count"
+                    readonly
+                    aria-label="Quantity"
+                  />
+                  <button
+                    class="btn btn-success"
+                    type="button"
+                    (click)="increaseQuantity(tx.id)"
+                  >
+                    +
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6 text-start">
         <app-cart-total></app-cart-total>
-        <button class="btn btn-primary" (click)="clearCart()">
+      </div>
+      <div class="col-md-6 text-end">
+        <button class="btn btn-warning" (click)="clearCart()">
           Clear Cart
         </button>
+        &nbsp;
         <button class="btn btn-primary" (click)="goHome()">Back to Home</button>
       </div>
     </div>
