@@ -17,18 +17,28 @@ export class CartService {
       (item) => item.id === txItem.id,
     );
     if (existingItemIndex > -1) {
-      // If the item already exists, update its amountPaid
-      currentCartData[existingItemIndex].amountPaid += txItem.amountPaid;
+      const updatedItem = {
+        ...currentCartData[existingItemIndex],
+        amountPaid:
+          currentCartData[existingItemIndex].amountPaid + txItem.amountPaid,
+        count: (currentCartData[existingItemIndex].count || 1) + 1,
+        // Increment the count if it exists, otherwise set it to 1
+      };
+      this.cartData.update((c) =>
+        c.map((item, idx) => (idx === existingItemIndex ? updatedItem : item)),
+      );
     } else {
+      const addedItem = {
+        ...txItem,
+        count: 1, // Initialize count to 1 for new items
+      };
       // If the item does not exist, add it to the cart
-      this.cartData.update((c) => [...c, txItem]);
+      this.cartData.update((c) => [...c, addedItem]);
     }
   }
 
-  removeFromCart(txItem: TransactionInfo): void {
-    this.cartData.update((cart) =>
-      cart.filter((item) => item.id !== txItem.id),
-    );
+  removeFromCart(txID: number): void {
+    this.cartData.update((cart) => cart.filter((item) => item.id !== txID));
   }
   clearCart(): void {
     this.cartData.set([]);
