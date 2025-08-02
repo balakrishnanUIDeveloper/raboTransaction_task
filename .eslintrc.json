@@ -31,6 +31,8 @@
             "style": "kebab-case"
           }
         ]
+        ,
+        "no-console": ["error", { "allow": ["warn", "error"] }]
       }
     },
     {

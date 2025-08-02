@@ -3,10 +3,11 @@ import { CartService } from './services/cart.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartTotalComponent } from './total/cart-total.component';
+import { CartActions } from './cart-actions/cart-actions.component';
 
 @Component({
   selector: 'app-cart',
-  imports: [CommonModule, CartTotalComponent],
+  imports: [CommonModule, CartTotalComponent, CartActions],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
@@ -28,14 +29,6 @@ export class CartComponent {
 
   getCart() {
     return this.cartService.cart();
-  }
-
-  decreaseQuantity(txId: number) {
-    this.cartService.decreaseItemCount(txId);
-  }
-
-  increaseQuantity(txId: number) {
-    this.cartService.increaseItemCount(txId);
   }
 
   clearCart() {

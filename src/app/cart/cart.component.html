@@ -23,29 +23,7 @@
             <td>{{ tx.accountNumber }}</td>
             <td>{{ tx.amountPaid }}</td>
             <td class="p-1">
-              <div class="input-group btn-group-sm action-btn">
-                <button
-                  class="btn btn-danger"
-                  type="button"
-                  (click)="decreaseQuantity(tx.id)"
-                >
-                  −
-                </button>
-                <input
-                  type="text"
-                  class="form-control text-center p-1"
-                  [value]="tx.count"
-                  readonly
-                  aria-label="Quantity"
-                />
-                <button
-                  class="btn btn-success"
-                  type="button"
-                  (click)="increaseQuantity(tx.id)"
-                >
-                  +
-                </button>
-              </div>
+              <app-cart-actions [tx]="tx"></app-cart-actions>
             </td>
           </tr>
         </tbody>

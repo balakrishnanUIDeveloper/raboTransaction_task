@@ -47,7 +47,11 @@ export class HomeComponent {
 
   addToCart(tx: TransactionInfo) {
     this.cartService.addToCart(tx);
-    console.log('Transaction added to cart:', this.cartService.cart());
-    console.log('transaction:', this.transactions);
+  }
+  isInCart(txId: number): boolean {
+    return this.cartService.cart().some((item) => item.id === txId);
+  }
+  getTransactionCountByID(txId: number): number {
+    return this.cartService.cart().find((item) => item.id === txId)?.count || 0;
   }
 }
