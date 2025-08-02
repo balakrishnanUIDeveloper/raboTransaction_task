@@ -9,8 +9,9 @@
   </button>
   <input
     type="number"
-    class="form-control text-end p-1"
+    class="form-control text-end"
     [value]="tx.count"
+    [id]="'quantity-' + tx.id"
     readonly
     [attr.aria-label]="'Quantity: ' + tx.count"
   />

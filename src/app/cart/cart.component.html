@@ -23,7 +23,7 @@
   <!-- Cart Items Section -->
   <section class="row" *ngIf="cartCount() > 0">
     <!-- Cart Table -->
-    <div class="col-12 mb-4">
+    <div class="col-12 mb-3">
       <div class="table-responsive">
         <table class="table table-hover align-middle">
           <thead class="table-light">
@@ -31,7 +31,7 @@
               <th scope="col">Name</th>
               <th scope="col">Account</th>
               <th scope="col">Amount (€)</th>
-              <th scope="col" class="col-xs-5 col-sm-2">Quantity</th>
+              <th scope="col" class="col-sm-1 col-xs-5 text-center">Quantity</th>
             </tr>
           </thead>
           <tbody>
@@ -39,7 +39,7 @@
               <td class="fw-semibold">{{ tx.contractorName }}</td>
               <td>{{ tx.accountNumber }}</td>
               <td class="fw-bold">€{{ tx.amountPaid }}</td>
-              <td>
+              <td class="p-1">
                 <app-cart-actions [tx]="tx"></app-cart-actions>
               </td>
             </tr>
