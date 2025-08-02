@@ -1,4 +1,4 @@
-# 🛒 Transaction Cart Application
+# Transaction Cart Application
 
 A modern Angular application for managing financial transactions with shopping cart functionality. Built with Angular 20, Bootstrap 5.3, and TypeScript.
 
@@ -7,7 +7,7 @@ A modern Angular application for managing financial transactions with shopping c
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple?logo=bootstrap)
 ![Test Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [About](#about)
 - [Features](#features)
@@ -21,7 +21,7 @@ A modern Angular application for managing financial transactions with shopping c
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
 
-## 🎯 About
+## About
 
 The Transaction Cart Application is a web-based tool designed to help users browse financial transactions and manage them in a shopping cart-like interface. Users can view transaction details, add transactions to their cart, adjust quantities, and manage their selections.
 
@@ -33,16 +33,16 @@ The Transaction Cart Application is a web-based tool designed to help users brow
 - **Clean architecture** with services and models
 - **Responsive design** that works on all devices
 
-## ✨ Features
+## Features
 
-### 🏠 Transaction List Page
+### Transaction List Page
 - View all available transactions in a clean table format
 - See transaction details (contractor name, account number, amount)
 - Add transactions to cart with visual feedback
 - Real-time cart count display
 - Error handling with user-friendly messages
 
-### 🛒 Shopping Cart Page
+### Shopping Cart Page
 - View all selected transactions
 - Adjust quantity of each transaction
 - Remove individual items from cart
@@ -50,14 +50,14 @@ The Transaction Cart Application is a web-based tool designed to help users brow
 - Real-time total calculation
 - Empty cart state with helpful messaging
 
-### 🎨 User Experience
+### User Experience
 - Responsive design for mobile, tablet, and desktop
 - Clean and modern Bootstrap 5.3 UI
 - Loading states and error handling
 - Accessibility-compliant with ARIA labels
 - Smooth navigation between pages
 
-## 📱 Screenshots
+## Screenshots
 ### Home / Transaction page
 **Desktop view**
 
@@ -80,7 +80,7 @@ The Transaction Cart Application is a web-based tool designed to help users brow
 <img width="302" height="424" alt="image" src="https://github.com/user-attachments/assets/0b098e11-623c-408b-a3f1-bbfcae62bb5a" />
 
 
-## 🔧 Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
@@ -95,7 +95,7 @@ npm --version
 ng --version
 ```
 
-## 🚀 Installation
+## Installation
 
 1. **Clone the repository**
    ```bash
@@ -113,7 +113,7 @@ ng --version
    ng version
    ```
 
-## 💻 Usage
+## Usage
 
 ### Development Server
 
@@ -149,7 +149,7 @@ npm run start:server
 
 This will serve the production build at `http://localhost:8080/`.
 
-## 📜 Available Scripts
+## Available Scripts
 
 | Command | Description |
 |---------|-------------|
@@ -187,7 +187,7 @@ src/
 └── styles.scss                      # Global styles
 ```
 
-## 🧪 Testing
+## Testing
 
 The application includes comprehensive test coverage:
 
@@ -210,7 +210,7 @@ Coverage reports are generated in the `coverage/` directory and can be viewed by
 - `karma.conf.js` - Test configuration
 - Coverage thresholds configured in Angular configuration
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 ### Frontend
 - **Angular 20.1** - Web framework
@@ -231,7 +231,7 @@ Coverage reports are generated in the `coverage/` directory and can be viewed by
 - **TypeScript Compiler** - Transpilation
 - **Angular DevKit** - Build tools
 
-## 📐 Architecture
+## Architecture
 
 ### Components
 - **App Component** - Root component with navigation
@@ -247,14 +247,14 @@ Coverage reports are generated in the `coverage/` directory and can be viewed by
 ### Models
 - **Transaction Model** - Data structure definitions
 
-## 🎨 Styling
+## Styling
 
 - **Bootstrap 5.3** for responsive design
 - **Custom SCSS** for component-specific styles
 - **Semantic HTML** with proper accessibility
 - **Mobile-first** responsive approach
 
-## 🚀 Deployment
+## Deployment
 
 The application can be deployed to any static hosting service:
 
@@ -272,7 +272,7 @@ Popular hosting options:
 - AWS S3
 - Firebase Hosting
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -287,11 +287,11 @@ Popular hosting options:
 - Follow Bootstrap 5.3 best practices
 - Run `npm run lint` and `npm run format` before committing
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Angular team for the amazing framework
 - Bootstrap team for the CSS framework
@@ -299,4 +299,4 @@ This project is licensed under the MIT License.
 
 ---
 
-**Built with ❤️ using Angular 20 and Bootstrap 5.3**
+**Built with using Angular 20 and Bootstrap 5.3**
