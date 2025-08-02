@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CartActions } from './cart-actions';
+import { CartActions } from './cart-actions.component';
 
 describe('CartActions', () => {
   let component: CartActions;

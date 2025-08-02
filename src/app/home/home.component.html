@@ -13,7 +13,7 @@
           <th>Name</th>
           <th>Account</th>
           <th>Amount (€)</th>
-          <th>Action</th>
+          <th class="col-2">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -27,7 +27,10 @@
               type="button"
               (click)="addToCart(tx)"
             >
-              ADD
+              <span *ngIf="isInCart(tx.id); else addtxt">
+                {{ getTransactionCountByID(tx.id) }} Added
+              </span>
+              <ng-template #addtxt>Add</ng-template>
             </button>
           </td>
         </tr>
