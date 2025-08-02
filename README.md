@@ -60,14 +60,23 @@ The Transaction Cart Application is a web-based tool designed to help users brow
 ## 📱 Screenshots
 ### Home / Transaction page
 **Desktop view**
+
 <img width="1403" height="756" alt="image" src="https://github.com/user-attachments/assets/2b7447c0-5061-49bd-9ecd-9f7f417b5e2d" />
+
+
 **Mobile view**
+
 <img width="303" height="675" alt="image" src="https://github.com/user-attachments/assets/4d999a5a-4234-4c70-bbcc-297b4d353dfc" />
 
 ### Cart page
 **Desktop view**
+
+
 <img width="1369" height="438" alt="image" src="https://github.com/user-attachments/assets/23a67f56-f0d1-46bc-89d7-917fb3cc6ebd" />
+
 **Mobile view**
+
+
 <img width="302" height="424" alt="image" src="https://github.com/user-attachments/assets/0b098e11-623c-408b-a3f1-bbfcae62bb5a" />
 
 
