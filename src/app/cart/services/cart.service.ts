@@ -1,5 +1,5 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { TransactionInfo } from '../../shared/models/transaction.model';
+import { TransactionInfo } from '../../core/models/transaction.model';
 
 @Injectable({
   providedIn: 'root',
@@ -74,7 +74,7 @@ export class CartService {
 
         const unitPrice = item.amountPaid / currentCount;
         const newCount = currentCount - 1;
-        const newAmountPaid = parseFloat((unitPrice * newCount).toFixed(2));
+        const newAmountPaid = Number(unitPrice) * Number(newCount);
 
         return [
           {

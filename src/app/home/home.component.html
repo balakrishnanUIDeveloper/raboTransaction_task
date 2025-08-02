@@ -1,4 +1,4 @@
-<div class="container py-4">
+<div class="container py-4" *ngIf="!loading">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Transaction List</h2>
     <button class="btn btn-outline-dark" (click)="goToCart()">
@@ -6,7 +6,7 @@
     </button>
   </div>
 
-  <div class="table-responsive">
+  <div class="table-responsive" *ngIf="transactions.length > 0">
     <table class="table table-hover">
       <thead class="table-light">
         <tr>
@@ -33,6 +33,18 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div
+    class="alert alert-info"
+    *ngIf="transactions.length === 0 && transactionError === false"
+  >
+    No transactions available.
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="transactions.length === 0 && transactionError === true"
+  >
+    Something went wrong. No transactions available.
   </div>
   <div class="d-flex justify-content-between">
     <app-cart-total></app-cart-total>
