@@ -3,23 +3,22 @@
     class="btn btn-outline-danger"
     type="button"
     (click)="decreaseQuantity(tx.id)"
-    [attr.aria-label]="'Decrease quantity for ' + tx.contractorName"
+    [attr.aria-label]="'Decrease quantity for ' + tx.accountNumber"
   >
     −
   </button>
   <input
-    type="text"
-    class="form-control text-center p-1"
+    type="number"
+    class="form-control text-end p-1"
     [value]="tx.count"
     readonly
     [attr.aria-label]="'Quantity: ' + tx.count"
-    style="max-width: 60px"
   />
   <button
     class="btn btn-outline-success"
     type="button"
     (click)="increaseQuantity(tx.id)"
-    [attr.aria-label]="'Increase quantity for ' + tx.contractorName"
+    [attr.aria-label]="'Increase quantity for ' + tx.accountNumber"
   >
     +
   </button>
