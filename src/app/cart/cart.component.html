@@ -1,44 +1,77 @@
-<div class="row">
-  <div class="col-md-12 text-center">
-    <h2 class="mb-3">Your Cart</h2>
-  </div>
-  <div class="col-md-12 mb-3 text-center" *ngIf="cartCount() === 0">
-    <p>No transactions in cart.</p>
-    <button class="btn btn-secondary" (click)="goHome()">Back to Home</button>
-  </div>
-  <div class="row" *ngIf="cartCount() > 0">
-    <div class="col-md-12">
-      <table class="table table-responsive">
-        <thead class="table-light">
-          <tr>
-            <th>Name</th>
-            <th>Account</th>
-            <th>Amount (€)</th>
-            <th class="col-xs-5 col-sm-1">Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tx of getCart()">
-            <td>{{ tx.contractorName }}</td>
-            <td>{{ tx.accountNumber }}</td>
-            <td>{{ tx.amountPaid }}</td>
-            <td class="p-1">
-              <app-cart-actions [tx]="tx"></app-cart-actions>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+<article class="container py-4">
+  <!-- Page Title Section -->
+  <section class="row">
+    <div class="col-12 text-center mb-4">
+      <h2 class="display-6 mb-0">Your Cart</h2>
     </div>
-    <div class="col-6 text-start mt-2">
-      <app-cart-total></app-cart-total>
+  </section>
+
+  <!-- Empty Cart Section -->
+  <section class="row" *ngIf="cartCount() === 0">
+    <div class="col-12 text-center">
+      <div class="card border-0 bg-light">
+        <div class="card-body py-5">
+          <p class="card-text text-muted mb-4">No transactions in cart.</p>
+          <button class="btn btn-primary" (click)="goHome()">
+            Back to Home
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="col-6 text-end mt-2">
-      <button class="btn btn-warning mb-1" (click)="clearCart()">
-        Clear Cart
-      </button>
-      <button class="ms-1 mb-1 btn btn-primary" (click)="goHome()">
-        Back to Home
-      </button>
+  </section>
+
+  <!-- Cart Items Section -->
+  <section class="row" *ngIf="cartCount() > 0">
+    <!-- Cart Table -->
+    <div class="col-12 mb-4">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Account</th>
+              <th scope="col">Amount (€)</th>
+              <th scope="col" class="col-xs-5 col-sm-2">Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tx of getCart()">
+              <td class="fw-semibold">{{ tx.contractorName }}</td>
+              <td>{{ tx.accountNumber }}</td>
+              <td class="fw-bold">€{{ tx.amountPaid }}</td>
+              <td>
+                <app-cart-actions [tx]="tx"></app-cart-actions>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-</div>
+
+    <!-- Cart Summary and Actions -->
+    <div class="col-12">
+      <div class="row align-items-center">
+        <!-- Total Section -->
+        <div class="col-md-6 mb-2">
+          <div class="card bg-light border-0">
+            <div class="card-body">
+              <app-cart-total></app-cart-total>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="col-md-6 text-end">
+          <div class="d-flex gap-2 justify-content-end">
+            <button class="btn btn-outline-danger" (click)="clearCart()">
+              Clear Cart
+            </button>
+            <button class="btn btn-primary" (click)="goHome()">
+              Back to Home
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>

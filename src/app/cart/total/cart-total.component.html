@@ -1,3 +1,8 @@
-<span *ngIf="total() > 0"
-  ><strong>Total: €{{ total() }}</strong></span
->
+<div *ngIf="total() > 0">
+  <h5 class="mb-0">
+    <span class="text-muted">Total:</span>
+    <span class="text-success fw-bold ms-2"
+      >€{{ total() | number: "1.2-2" }}</span
+    >
+  </h5>
+</div>

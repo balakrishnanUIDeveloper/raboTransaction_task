@@ -1,8 +1,9 @@
-<div class="input-group btn-group-sm action-btn">
+<div class="input-group input-group-sm">
   <button
-    class="btn btn-danger"
+    class="btn btn-outline-danger"
     type="button"
     (click)="decreaseQuantity(tx.id)"
+    [attr.aria-label]="'Decrease quantity for ' + tx.contractorName"
   >
     −
   </button>
@@ -11,12 +12,14 @@
     class="form-control text-center p-1"
     [value]="tx.count"
     readonly
-    aria-label="Quantity"
+    [attr.aria-label]="'Quantity: ' + tx.count"
+    style="max-width: 60px"
   />
   <button
-    class="btn btn-success"
+    class="btn btn-outline-success"
     type="button"
     (click)="increaseQuantity(tx.id)"
+    [attr.aria-label]="'Increase quantity for ' + tx.contractorName"
   >
     +
   </button>

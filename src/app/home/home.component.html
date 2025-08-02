@@ -1,55 +1,79 @@
-<div class="container py-4" *ngIf="!loading">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Transaction List</h2>
-    <button class="btn btn-outline-dark" (click)="goToCart()">
-      View Cart ({{ cartCount() }})
-    </button>
-  </div>
+<article class="container py-4" *ngIf="!loading">
+  <!-- Page Title Section -->
+  <section class="row">
+    <div class="col-12 d-flex justify-content-between align-items-center mb-4">
+      <h2 class="mb-0">Transaction List</h2>
+      <button class="btn btn-outline-primary" (click)="goToCart()">
+        View Cart ({{ cartCount() }})
+      </button>
+    </div>
+  </section>
 
-  <div class="table-responsive" *ngIf="transactions.length > 0">
-    <table class="table table-hover">
-      <thead class="table-light">
-        <tr>
-          <th>Name</th>
-          <th>Account</th>
-          <th>Amount (€)</th>
-          <th class="col-2">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let tx of transactions">
-          <td>{{ tx.contractorName }}</td>
-          <td>{{ tx.accountNumber }}</td>
-          <td>{{ tx.amountPaid }}</td>
-          <td>
-            <button
-              class="btn btn-sm btn-success"
-              type="button"
-              (click)="addToCart(tx)"
-            >
-              <span *ngIf="isInCart(tx.id); else addtxt">
-                {{ getTransactionCountByID(tx.id) }} Added
-              </span>
-              <ng-template #addtxt>Add</ng-template>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div
-    class="alert alert-info"
-    *ngIf="transactions.length === 0 && transactionError === false"
-  >
-    No transactions available.
-  </div>
-  <div
-    class="alert alert-danger"
-    *ngIf="transactions.length === 0 && transactionError === true"
-  >
-    Something went wrong. No transactions available.
-  </div>
-  <div class="d-flex justify-content-between">
-    <app-cart-total></app-cart-total>
-  </div>
-</div>
+  <!-- Transaction Table Section -->
+  <section class="row" *ngIf="transactions.length > 0">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Account</th>
+              <th scope="col">Amount (€)</th>
+              <th scope="col" class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tx of transactions">
+              <td>{{ tx.contractorName }}</td>
+              <td>{{ tx.accountNumber }}</td>
+              <td class="fw-bold">{{ tx.amountPaid }}</td>
+              <td class="text-center">
+                <button
+                  class="btn btn-sm btn-success"
+                  type="button"
+                  (click)="addToCart(tx)"
+                >
+                  <span *ngIf="isInCart(tx.id); else addTemplate">
+                    {{ getTransactionCountByID(tx.id) }} Added
+                  </span>
+                  <ng-template #addTemplate>Add</ng-template>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alert Messages Section -->
+  <section class="row" *ngIf="transactions.length === 0">
+    <div class="col-12">
+      <div
+        class="alert alert-info d-flex align-items-center"
+        *ngIf="!transactionError"
+        role="alert"
+      >
+        <div>No transactions available at the moment.</div>
+      </div>
+
+      <div
+        class="alert alert-danger d-flex align-items-center"
+        *ngIf="transactionError"
+        role="alert"
+      >
+        <div>
+          <strong>Error!</strong> Something went wrong while loading
+          transactions.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Total Section -->
+  <section class="row">
+    <div class="col-12 d-flex justify-content-end mt-4">
+      <app-cart-total></app-cart-total>
+    </div>
+  </section>
+</article>
