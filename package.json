@@ -9,17 +9,16 @@
         "test": "ng test",
         "lint": "ng lint",
         "lint:fix": "ng lint --fix",
-        "format": "prettier --write \"src/**/*.{ts,html}\""
+        "format": "prettier --write \"src/**/*.{ts,html}\"",
+        "start:server": "ng build --configuration production && http-server dist/transaction-cart-app/browser -p 8080 -c-1 --spa"
     },
     "prettier": {
-        "overrides": [
-            {
-                "files": "*.html",
-                "options": {
-                    "parser": "angular"
-                }
+        "overrides": [{
+            "files": "*.html",
+            "options": {
+                "parser": "angular"
             }
-        ]
+        }]
     },
     "private": true,
     "dependencies": {

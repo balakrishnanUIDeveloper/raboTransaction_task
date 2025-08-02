@@ -47,7 +47,5 @@ export class HomeComponent {
 
   addToCart(tx: TransactionInfo) {
     this.cartService.addToCart(tx);
-    console.log('Transaction added to cart:', this.cartService.cart());
-    console.log('transaction:', this.transactions);
   }
 }
