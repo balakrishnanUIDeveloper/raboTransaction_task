@@ -1,7 +1,7 @@
 <div class="container py-4">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Transaction List</h2>
-    <button class="btn btn-primary" (click)="goToCart()">
+    <button class="btn btn-outline-dark" (click)="goToCart()">
       View Cart ({{ cartCount() }})
     </button>
   </div>
@@ -33,5 +33,8 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="d-flex justify-content-between">
+    <app-cart-total></app-cart-total>
   </div>
 </div>

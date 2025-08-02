@@ -4,10 +4,11 @@ import { TransactionService } from '../core/services/transaction.service';
 import { CartService } from '../cart/services/cart.service';
 import { TransactionInfo } from '../shared/models/transaction.model';
 import { Router } from '@angular/router';
+import { CartTotalComponent } from '../cart/total/cart-total.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, CartTotalComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -39,5 +40,7 @@ export class HomeComponent {
 
   addToCart(tx: TransactionInfo) {
     this.cartService.addToCart(tx);
+    console.log('Transaction added to cart:', this.cartService.cart());
+    console.log('transaction:', this.transactions);
   }
 }
