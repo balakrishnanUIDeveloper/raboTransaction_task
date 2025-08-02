@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { TransactionService } from '../core/services/transaction.service';
 import { CartService } from '../cart/services/cart.service';
-import { TransactionInfo } from '../shared/models/transaction.model';
+import { TransactionInfo } from '../core/models/transaction.model';
 import { Router } from '@angular/router';
 import { CartTotalComponent } from '../cart/total/cart-total.component';
 
@@ -17,18 +17,25 @@ export class HomeComponent {
   private readonly cartService = inject(CartService);
   private readonly router = inject(Router);
   transactions: TransactionInfo[] = [];
+  transactionError = false;
+  loading = true;
   constructor() {
     this.loadTransactions();
   }
   loadTransactions() {
-    this.txService.getTransactions().subscribe(
-      (data) => {
+    this.txService.getTransactions().subscribe({
+      next: (data) => {
+        this.transactionError = false;
         this.transactions = data.transactions || [];
+        this.loading = false;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error loading transactions:', error);
+        this.transactionError = true;
+        this.transactions = [];
+        this.loading = false;
       },
-    );
+    });
   }
   goToCart() {
     this.router.navigate(['/cart']);
