@@ -20,12 +20,16 @@ describe('CartActions', () => {
     const cartServiceSpy = jasmine.createSpyObj('CartService', [
       'decreaseItemCount',
       'increaseItemCount',
+      'getCartTransactionCountByID',
     ]);
 
     await TestBed.configureTestingModule({
       imports: [CartActions],
       providers: [{ provide: CartService, useValue: cartServiceSpy }],
     }).compileComponents();
+
+    // Setup spy defaults
+    cartServiceSpy.getCartTransactionCountByID.and.returnValue(2);
 
     fixture = TestBed.createComponent(CartActions);
     component = fixture.componentInstance;
@@ -57,6 +61,17 @@ describe('CartActions', () => {
 
       component.increaseQuantity(txId);
       expect(mockCartService.increaseItemCount).toHaveBeenCalledWith(txId);
+    });
+
+    it('should get transaction count by ID from cart service', () => {
+      const txId = mockTransaction.id;
+
+      const result = component.getTransactionCountByID(txId);
+
+      expect(mockCartService.getCartTransactionCountByID).toHaveBeenCalledWith(
+        txId,
+      );
+      expect(result).toBe(2);
     });
   });
 });

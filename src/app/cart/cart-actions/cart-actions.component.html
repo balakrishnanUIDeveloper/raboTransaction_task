@@ -19,6 +19,7 @@
     class="btn btn-outline-success"
     type="button"
     (click)="increaseQuantity(tx.id)"
+    [disabled]="getTransactionCountByID(tx.id) >= 10"
     [attr.aria-label]="'Increase quantity for ' + tx.accountNumber"
   >
     +

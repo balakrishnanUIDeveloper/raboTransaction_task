@@ -12,6 +12,16 @@
   <!-- Transaction Table Section -->
   <section class="row" *ngIf="transactions.length > 0">
     <div class="col-12">
+      <div
+        class="alert alert-info d-flex align-items-center mb-2"
+        *ngIf="!transactionError"
+        role="alert"
+      >
+        <div>
+          <strong>Info!</strong> The Limit per transactions is 10. Please
+          contact Admin to change.
+        </div>
+      </div>
       <div class="table-responsive">
         <table class="table table-hover table-striped">
           <thead class="table-light">
@@ -31,6 +41,7 @@
                 <button
                   class="btn btn-sm btn-success"
                   type="button"
+                  [disabled]="getTransactionCountByID(tx.id) >= 10"
                   (click)="addToCart(tx)"
                 >
                   <span *ngIf="isInCart(tx.id); else addTemplate">

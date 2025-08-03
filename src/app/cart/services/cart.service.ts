@@ -86,4 +86,8 @@ export class CartService {
       }),
     );
   }
+
+  getCartTransactionCountByID(txId: number): number {
+    return this.cart().find((item) => item.id === txId)?.count || 0;
+  }
 }
