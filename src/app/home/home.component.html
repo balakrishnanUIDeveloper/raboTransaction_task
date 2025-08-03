@@ -1,90 +1,71 @@
 <article class="container py-4" *ngIf="!loading">
-  <!-- Page Title Section -->
-  <section class="row">
-    <div class="col-12 d-flex justify-content-between align-items-center mb-4">
-      <h2 class="mb-0">Transaction List</h2>
-      <button class="btn btn-outline-primary" (click)="goToCart()">
+    <!-- Page Title Section -->
+    <section class="row">
+        <div class="col-12 d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Transaction List</h2>
+            <button class="btn btn-outline-primary" (click)="goToCart()">
         View Cart ({{ cartCount() }})
       </button>
-    </div>
-  </section>
-
-  <!-- Transaction Table Section -->
-  <section class="row" *ngIf="transactions.length > 0">
-    <div class="col-12">
-      <div
-        class="alert alert-info d-flex align-items-center mb-2"
-        *ngIf="!transactionError"
-        role="alert"
-      >
-        <div>
-          <strong>Info!</strong> The Limit per transactions is 10. Please
-          contact Admin to change.
         </div>
-      </div>
-      <div class="table-responsive">
-        <table class="table table-hover table-striped">
-          <thead class="table-light">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Account</th>
-              <th scope="col">Amount (€)</th>
-              <th scope="col" class="text-center col-2">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let tx of transactions">
-              <td>{{ tx.contractorName }}</td>
-              <td>{{ tx.accountNumber }}</td>
-              <td class="fw-bold">{{ tx.amountPaid }}</td>
-              <td class="text-center">
-                <button
-                  class="btn btn-sm btn-success"
-                  type="button"
-                  [disabled]="getTransactionCountByID(tx.id) >= 10"
-                  (click)="addToCart(tx)"
-                >
+    </section>
+
+    <!-- Transaction Table Section -->
+    <section class="row" *ngIf="transactions.length > 0">
+        <div class="col-12">
+            <div class="alert alert-info d-flex align-items-center mb-2" *ngIf="!transactionError" role="alert">
+                <div>
+                    <strong>Info!</strong> The Limit per transactions is 10. Please contact Admin to change.
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Account</th>
+                            <th scope="col">Amount (€)</th>
+                            <th scope="col" class="text-center col-2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tx of transactions">
+                            <td>{{ tx.contractorName }}</td>
+                            <td>{{ tx.accountNumber }}</td>
+                            <td class="fw-bold">{{ tx.amountPaid }}</td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-success" type="button" [disabled]="getTransactionCountByID(tx.id) >= 10" (click)="addToCart(tx)">
                   <span *ngIf="isInCart(tx.id); else addTemplate">
                     {{ getTransactionCountByID(tx.id) }} Added
                   </span>
                   <ng-template #addTemplate>Add</ng-template>
                 </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- Alert Messages Section -->
-  <section class="row" *ngIf="transactions.length === 0">
-    <div class="col-12">
-      <div
-        class="alert alert-info d-flex align-items-center"
-        *ngIf="!transactionError"
-        role="alert"
-      >
-        <div>No transactions available at the moment.</div>
-      </div>
-
-      <div
-        class="alert alert-danger d-flex align-items-center"
-        *ngIf="transactionError"
-        role="alert"
-      >
-        <div>
-          <strong>Error!</strong> Something went wrong while loading
-          transactions.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Total Section -->
-  <section class="row">
-    <div class="col-12 d-flex justify-content-end mt-4">
-      <app-cart-total></app-cart-total>
-    </div>
-  </section>
+    <!-- Alert Messages Section -->
+    <section class="row" *ngIf="transactions.length === 0">
+        <div class="col-12">
+            <div class="alert alert-info d-flex align-items-center" *ngIf="!transactionError" role="alert">
+                <div>No transactions available at the moment.</div>
+            </div>
+
+            <div class="alert alert-danger d-flex align-items-center" *ngIf="transactionError" role="alert">
+                <div>
+                    <strong>Error!</strong> Something went wrong while loading transactions.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Total Section -->
+    <section class="row">
+        <div class="col-12 d-flex justify-content-end mt-4">
+            <app-cart-total></app-cart-total>
+        </div>
+    </section>
 </article>
