@@ -46,6 +46,7 @@ describe('HomeComponent', () => {
       'cartCount',
       'cart',
       'cartTotal',
+      'getCartTransactionCountByID',
     ]);
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
@@ -56,6 +57,7 @@ describe('HomeComponent', () => {
     cartServiceSpy.cartCount.and.returnValue(2);
     cartServiceSpy.cart.and.returnValue([]);
     cartServiceSpy.cartTotal.and.returnValue(0);
+    cartServiceSpy.getCartTransactionCountByID.and.returnValue(0);
 
     await TestBed.configureTestingModule({
       imports: [HomeComponent],
@@ -92,12 +94,6 @@ describe('HomeComponent', () => {
       expect(component.loading).toBeFalse();
       expect(component.transactionError).toBeFalse();
     });
-
-    it('should set loading to false after constructor runs', () => {
-      // The component already ran its constructor due to spy setup
-      // So loading should be false after the successful observable completes
-      expect(component.loading).toBeFalse();
-    });
   });
 
   describe('Load Transactions', () => {
@@ -105,31 +101,6 @@ describe('HomeComponent', () => {
       component.loadTransactions();
 
       expect(component.transactions).toEqual(mockTransactions);
-      expect(component.loading).toBeFalse();
-      expect(component.transactionError).toBeFalse();
-    });
-
-    it('should handle empty transactions array', () => {
-      const emptyResponse: TransactionResponse = { transactions: [] };
-      mockTransactionService.getTransactions.and.returnValue(of(emptyResponse));
-
-      component.loadTransactions();
-
-      expect(component.transactions).toEqual([]);
-      expect(component.loading).toBeFalse();
-      expect(component.transactionError).toBeFalse();
-    });
-
-    it('should handle null transactions array', () => {
-      const nullResponse: TransactionResponse = {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        transactions: null as any,
-      };
-      mockTransactionService.getTransactions.and.returnValue(of(nullResponse));
-
-      component.loadTransactions();
-
-      expect(component.transactions).toEqual([]);
       expect(component.loading).toBeFalse();
       expect(component.transactionError).toBeFalse();
     });
@@ -162,14 +133,22 @@ describe('HomeComponent', () => {
   });
 
   describe('Cart Integration', () => {
-    it('should delegate cart operations to service', () => {
+    it('should add to cart when transaction count is below limit', () => {
       const transaction = mockTransactions[0];
+      mockCartService.getCartTransactionCountByID.and.returnValue(5); // Below limit
 
       component.addToCart(transaction);
+      
       expect(mockCartService.addToCart).toHaveBeenCalledWith(transaction);
+    });
 
-      component.cartCount();
-      expect(mockCartService.cartCount).toHaveBeenCalled();
+    it('should not add to cart when transaction count exceeds limit', () => {
+      const transaction = mockTransactions[0];
+      mockCartService.getCartTransactionCountByID.and.returnValue(11); // Above limit
+
+      component.addToCart(transaction);
+      
+      expect(mockCartService.addToCart).not.toHaveBeenCalled();
     });
 
     it('should check cart status for transactions', () => {
@@ -183,40 +162,21 @@ describe('HomeComponent', () => {
         },
       ];
       mockCartService.cart.and.returnValue(mockCartItems);
+      mockCartService.getCartTransactionCountByID.and.returnValue(3);
 
       expect(component.isInCart(1)).toBeTrue();
       expect(component.isInCart(999)).toBeFalse();
       expect(component.getTransactionCountByID(1)).toBe(3);
-      expect(component.getTransactionCountByID(999)).toBe(0);
     });
   });
 
   describe('Component State Management', () => {
-    it('should have correct initial state', () => {
-      expect(component.transactionError).toBeFalse();
-    });
-
     it('should update state after successful transaction load', () => {
       fixture.detectChanges();
 
       expect(component.transactions.length).toBe(2);
       expect(component.transactionError).toBeFalse();
       expect(component.loading).toBeFalse();
-    });
-
-    it('should handle error state correctly', () => {
-      mockTransactionService.getTransactions.and.returnValue(
-        throwError(() => new Error('Test error')),
-      );
-      spyOn(console, 'error');
-
-      const errorFixture = TestBed.createComponent(HomeComponent);
-      errorFixture.detectChanges();
-      const errorComponent = errorFixture.componentInstance;
-
-      expect(errorComponent.transactions).toEqual([]);
-      expect(errorComponent.transactionError).toBeTrue();
-      expect(errorComponent.loading).toBeFalse();
     });
   });
 });

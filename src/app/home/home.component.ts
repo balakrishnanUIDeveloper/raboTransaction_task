@@ -46,8 +46,8 @@ export class HomeComponent {
   }
 
   addToCart(tx: TransactionInfo) {
-    if(this.getTransactionCountByID(tx.id) > 10){
-      return
+    if (this.getTransactionCountByID(tx.id) > 10) {
+      return;
     }
     this.cartService.addToCart(tx);
   }

@@ -181,4 +181,23 @@ describe('CartService', () => {
       expect(service.cart()[0].amountPaid).toBe(20.66);
     });
   });
+
+  describe('Get Transaction Count By ID', () => {
+    it('should return correct count for existing transaction', () => {
+      service.addToCart(mockTransaction1);
+      service.increaseItemCount(1); // Count should be 2
+
+      expect(service.getCartTransactionCountByID(1)).toBe(2);
+    });
+
+    it('should return 0 for non-existing transaction', () => {
+      service.addToCart(mockTransaction1);
+
+      expect(service.getCartTransactionCountByID(999)).toBe(0);
+    });
+
+    it('should return 0 for empty cart', () => {
+      expect(service.getCartTransactionCountByID(1)).toBe(0);
+    });
+  });
 });
