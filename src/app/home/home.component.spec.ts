@@ -138,7 +138,7 @@ describe('HomeComponent', () => {
       mockCartService.getCartTransactionCountByID.and.returnValue(5); // Below limit
 
       component.addToCart(transaction);
-      
+
       expect(mockCartService.addToCart).toHaveBeenCalledWith(transaction);
     });
 
@@ -147,7 +147,7 @@ describe('HomeComponent', () => {
       mockCartService.getCartTransactionCountByID.and.returnValue(11); // Above limit
 
       component.addToCart(transaction);
-      
+
       expect(mockCartService.addToCart).not.toHaveBeenCalled();
     });
 

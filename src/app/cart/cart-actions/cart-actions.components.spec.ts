@@ -65,10 +65,12 @@ describe('CartActions', () => {
 
     it('should get transaction count by ID from cart service', () => {
       const txId = mockTransaction.id;
-      
+
       const result = component.getTransactionCountByID(txId);
-      
-      expect(mockCartService.getCartTransactionCountByID).toHaveBeenCalledWith(txId);
+
+      expect(mockCartService.getCartTransactionCountByID).toHaveBeenCalledWith(
+        txId,
+      );
       expect(result).toBe(2);
     });
   });
