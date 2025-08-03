@@ -46,12 +46,15 @@ export class HomeComponent {
   }
 
   addToCart(tx: TransactionInfo) {
+    if(this.getTransactionCountByID(tx.id) > 10){
+      return
+    }
     this.cartService.addToCart(tx);
   }
   isInCart(txId: number): boolean {
     return this.cartService.cart().some((item) => item.id === txId);
   }
   getTransactionCountByID(txId: number): number {
-    return this.cartService.cart().find((item) => item.id === txId)?.count || 0;
+    return this.cartService.getCartTransactionCountByID(txId);
   }
 }

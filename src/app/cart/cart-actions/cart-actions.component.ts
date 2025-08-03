@@ -20,4 +20,7 @@ export class CartActions {
   increaseQuantity(txId: number) {
     this.cartService.increaseItemCount(txId);
   }
+  getTransactionCountByID(txId: number): number {
+    return this.cartService.getCartTransactionCountByID(txId);
+  }
 }
