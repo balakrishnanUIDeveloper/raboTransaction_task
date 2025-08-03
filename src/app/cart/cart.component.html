@@ -1,79 +1,79 @@
 <article class="container py-4">
-    <!-- Page Title Section -->
-    <section class="row">
-        <div class="col-12 text-center mb-4">
-            <h2 class="display-6 mb-0">Your Cart</h2>
-        </div>
-    </section>
+  <!-- Page Title Section -->
+  <section class="row">
+    <div class="col-12 text-center mb-4">
+      <h2 class="display-6 mb-0">Your Cart</h2>
+    </div>
+  </section>
 
-    <!-- Empty Cart Section -->
-    <section class="row" *ngIf="cartCount() === 0">
-        <div class="col-12 text-center">
-            <div class="card border-0 bg-light">
-                <div class="card-body py-5">
-                    <p class="card-text text-muted mb-4">No transactions in cart.</p>
-                    <button class="btn btn-primary" (click)="goHome()">
+  <!-- Empty Cart Section -->
+  <section class="row" *ngIf="cartCount() === 0">
+    <div class="col-12 text-center">
+      <div class="card border-0 bg-light">
+        <div class="card-body py-5">
+          <p class="card-text text-muted mb-4">No transactions in cart.</p>
+          <button class="btn btn-primary" (click)="goHome()">
             Back to Home
           </button>
-                </div>
-            </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Cart Items Section -->
-    <section class="row" *ngIf="cartCount() > 0">
-        <!-- Cart Table -->
-        <div class="col-12 mb-3">
-            <div class="table-responsive">
-                <table class="table table-striped align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Account</th>
-                            <th scope="col">Amount (€)</th>
-                            <th scope="col" class="col-sm-1 col-xs-5 text-center">
-                                Quantity
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let tx of getCart()">
-                            <td class="fw-semibold">{{ tx.contractorName }}</td>
-                            <td>{{ tx.accountNumber }}</td>
-                            <td class="fw-bold">€{{ tx.amountPaid }}</td>
-                            <td class="p-1">
-                                <app-cart-actions [tx]="tx"></app-cart-actions>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+  <!-- Cart Items Section -->
+  <section class="row" *ngIf="cartCount() > 0">
+    <!-- Cart Table -->
+    <div class="col-12 mb-3">
+      <div class="table-responsive">
+        <table class="table table-striped align-middle">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Account</th>
+              <th scope="col">Amount (€)</th>
+              <th scope="col" class="col-sm-1 col-xs-5 text-center">
+                Quantity
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tx of getCart()">
+              <td class="fw-semibold">{{ tx.contractorName }}</td>
+              <td>{{ tx.accountNumber }}</td>
+              <td class="fw-bold">€{{ tx.amountPaid }}</td>
+              <td class="p-1">
+                <app-cart-actions [tx]="tx"></app-cart-actions>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Cart Summary and Actions -->
+    <div class="col-12">
+      <div class="row align-items-center">
+        <!-- Total Section -->
+        <div class="col-md-6 mb-2">
+          <div class="card bg-light border-0">
+            <div class="card-body">
+              <app-cart-total></app-cart-total>
             </div>
+          </div>
         </div>
 
-        <!-- Cart Summary and Actions -->
-        <div class="col-12">
-            <div class="row align-items-center">
-                <!-- Total Section -->
-                <div class="col-md-6 mb-2">
-                    <div class="card bg-light border-0">
-                        <div class="card-body">
-                            <app-cart-total></app-cart-total>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="col-md-6 text-end">
-                    <div class="d-flex gap-2 justify-content-end">
-                        <button class="btn btn-outline-danger" (click)="clearCart()">
+        <!-- Action Buttons -->
+        <div class="col-md-6 text-end">
+          <div class="d-flex gap-2 justify-content-end">
+            <button class="btn btn-outline-danger" (click)="clearCart()">
               Clear Cart
             </button>
-                        <button class="btn btn-primary" (click)="goHome()">
+            <button class="btn btn-primary" (click)="goHome()">
               Back to Home
             </button>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </article>
