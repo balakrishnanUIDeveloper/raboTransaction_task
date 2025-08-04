@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-cart-total',
   imports: [CommonModule],
   templateUrl: './cart-total.component.html',
-  styleUrl: './cart-total.component.scss',
 })
 export class CartTotalComponent {
   private readonly cartService = inject(CartService);

@@ -9,7 +9,6 @@ import { CartActions } from './cart-actions/cart-actions.component';
   selector: 'app-cart',
   imports: [CommonModule, CartTotalComponent, CartActions],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss',
 })
 export class CartComponent {
   private readonly cartService = inject(CartService);

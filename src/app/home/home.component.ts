@@ -10,7 +10,6 @@ import { CartTotalComponent } from '../cart/total/cart-total.component';
   selector: 'app-home',
   imports: [CommonModule, CartTotalComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   private readonly txService = inject(TransactionService);

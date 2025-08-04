@@ -6,7 +6,6 @@ import { TransactionInfo } from '../../core/models/transaction.model';
   selector: 'app-cart-actions',
   imports: [],
   templateUrl: './cart-actions.component.html',
-  styleUrl: './cart-actions.component.scss',
 })
 export class CartActions {
   private readonly cartService = inject(CartService);
